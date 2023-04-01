@@ -1,11 +1,13 @@
-This project will leverage JavaScript, Leaflet, and MongoDB to generate an interactive heat map displaying carbon and methane emissions for over 200 countries and build a hierarchical database that can be expanded with additional datapoints over time. 
+This project will leverage JavaScript, Leaflet, and SQLite to generate an interactive heat map displaying carbon and methane emissions for over 200 countries and build a relational SQLite database that could be expanded with additional datapoints over time. 
 
 The base map will allow users to click on any of the countries included in the dataset and navigate to a page with data visualizations specific to that country's carbon and methane emissions metrics. This will include both the country's emissions measures as well as a global average for comparison. Visualizations will include a bubble chart, line graph, and gauge chart. These visualizations will contain emissions measures from 1990-2019 and will be dynamic.
 
-Data for this project is sourced from The World Bank (https://data.worldbank.org/indicator/EN.ATM.CO2E.KT?end=2019&start=1990). This data will need to be cleaned to isolate country measurements by removing metrics associte with regions/country groups. Once the data is cleaned and reformatted, it will be stored using MongoDB and used to generate visualizations. 
+Data for this project is sourced from The World Bank (https://data.worldbank.org/indicator/EN.ATM.CO2E.KT?end=2019&start=1990). This data will need to be cleaned to isolate country measurements by removing metrics associte with regions/country groups. Once the data is cleaned and reformatted, it will be stored using SQLite and used to generate visualizations. 
 
-We will need to source coordinates for the countries countained within this dataset to generate the desired map.
+We sourced coordinates for world countries at https://datahub.io/core/geo-countries#data to generate the desired map.
 
+
+Further Considerations:
 Additionally, rather than using global averages a marker for emissions comparison, benchmarks may need to be generated based on The World Bank's country classification system (https://blogs.worldbank.org/opendata/new-world-bank-country-classifications-income-level-2022-2023) to provide a more appropriate comparison.
 
 
