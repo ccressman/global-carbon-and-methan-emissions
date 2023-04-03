@@ -62,31 +62,34 @@ function getColor(d) {
 var legend = L.control({ position: 'bottomright' });
 
 legend.onAdd = function (map) {
-  var div = L.DomUtil.create("div", "info legend");
-  var labels = [
-    "Extremely Low",
-    "Very Low",
-    "Low",
-    "Low to Moderate",
-    "Moderate",
-    "Moderate to High",
-    "High",
-  ];
-  var grades = [0, 10000, 20000, 50000, 100000, 200000, 1000000];
+  var div = L.DomUtil.create("div", "info legend"),
+    grades = [0, 10000, 20000, 50000, 100000, 200000, 1000000],
+    labels = [
+      "Extremely Low",
+      "Very Low",
+      "Low",
+      "Low to Moderate",
+      "Moderate",
+      "Moderate to High",
+      "High",
+    ];
 
   // loop through our emission intervals and generate a label with a colored square for each interval
   for (var i = 0; i < grades.length; i++) {
     div.innerHTML +=
-      '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+      '<i style="background:' +
+      getColor(grades[i] + 1) +
+      '"></i> ' +
       labels[i] +
       ": " +
+      '<span style="font-weight: bold;">' +
       grades[i] +
-      (grades[i + 1] ? "&ndash;" + (grades[i + 1] - 1) + "<br>" : "+");
+      (grades[i + 1] ? "&ndash;" + grades[i + 1] + "<br>" : "+") +
+      "</span>";
   }
 
   return div;
 };
-
 legend.addTo(myMap);
 
 function getEmissionsLevelDescription(value) {
