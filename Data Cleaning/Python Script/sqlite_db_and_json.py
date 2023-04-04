@@ -13,7 +13,7 @@ conn = engine.connect() #connect to db
 
 # %%
 #Read in cleaned METHANE emissions data and upload to database
-methane_dataset = pd.read_csv('../../resources/methane_emissions_by_country.csv')
+methane_dataset = pd.read_csv('../../resources/methane_and_GNI.csv')
 methane_dataset.to_sql('country_ch4_emissions', conn, if_exists='replace', index=False) 
 methane_dataset.to_json('../../resources/country_ch4_emissions.json', 'records')
 
@@ -26,7 +26,7 @@ print(dataframe_check)
 
 #%%
 #read in cleaned CARBON emissions data and upload to database
-carbon_dataset = pd.read_csv('../../resources/carbon_emissions_by_country.csv')
+carbon_dataset = pd.read_csv('../../resources/carbon_and_GNI.csv')
 carbon_dataset.to_sql('country_co2_emissions', conn, if_exists='replace', index=False)
 carbon_dataset.to_json('../../resources/country_co2_emissions.json', 'records')
 
