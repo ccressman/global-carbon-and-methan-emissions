@@ -5,8 +5,15 @@ var margin = {top: 20, right: 20, bottom: 30, left: 40},
 
 
 // Set the ranges of the scales
-var x = d3.scale.ordinal().rangeRoundBands([0, width], 0.2);
-var y = d3.scale.linear().range([height, 0]);
+// var x = d3.scale.ordinal().rangeRoundBands([0, width], 0.2);
+// var y = d3.scale.linear().range([height, 0]);
+
+var colourScale = d3.scaleOrdinal()
+        .domain(["One", "Two", "Three"])
+        .range(["#abacab", "#b67a4e", "#5a6fbb"])
+
+
+
 
 // Set the domain of the scales
 x.domain(data.map(function(d) { return d.Continent; }));
