@@ -1,11 +1,92 @@
-body {
-  padding: 0;
+*{
   margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-#map,
-body,
-html {
-  height: 100%;
+#logo {
+  margin-right: 700px;
+}
+
+#notification {
+  margin-left: 100px;
+  margin-right: 10px;
+}
+
+#account {
+  margin-bottom: 5px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.navbar {
+  padding-left: 80px;
+  padding-right: 50px;
+  box-shadow: 3px 3px 5px #e6e6e6;
+  background-color: white;
+}
+
+li {
+  display: inline-block;
+  margin: 30 auto;
+  text-align: center;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+li a {
+  display: block;
+  text-align: center;
+  padding: 30px;
+  text-decoration: none;
+  color: black;
+}
+
+li a:hover {
+  color: rgb(205, 0, 205);
+  text-decoration: none;
+}
+
+body{
+  margin: auto;
+  background-color: #F8F8FF;
+}
+
+.mainbody{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+.mapbox{
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 3px 3px 10px #888888;
+}
+
+#map
+{
+  height: 500px;
+  width: 800px;
+  border-radius: 5px;
+}
+
+#overline {
+  color:#9291A5;
+}
+
+#title {
+  font-weight: bold;
+  font-size: 25px;
 }
 
