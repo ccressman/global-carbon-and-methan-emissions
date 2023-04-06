@@ -102,3 +102,79 @@ function getEmissionsLevelDescription(value) {
   return 'Extremely Low';
 }
 
+
+// Bar chart
+
+const barMargin = { top: 50, right: 30, bottom: 70, left: 60 },
+    width = 500 - barMargin.left - barMargin.right,
+    height = 400 - barMargin.top - barMargin.bottom;
+
+// append the svg object to the body of the page
+const svg = d3.select("#bar")
+    .append("svg")
+    .attr("width", width + barMargin.left + barMargin.right)
+    .attr("height", height + barMargin.top + barMargin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + barMargin.left + "," + barMargin.top + ")");
+
+// Bar chart code
+d3.csv("/resources/methane_emissions_by_country.csv").then(
+    function (barData) {
+    var regionData = Array.from(d3.rollup(barData, v => d3.sum(v, d => d["2019"]), d => d["Region"]));
+    console.log(regionData)
+
+    // X axis
+    var x = d3.scaleBand()
+        .range([ 0, width ])
+        .domain(regionData.map(function(d) { return d[0]; }))
+        .padding(0.5);
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x))
+
+    // Add Y axis
+    var y = d3.scaleLinear()
+        .domain([0, d3.max(regionData, function(d) {return +d[1]+10; })])
+        .range([ height, 0]);
+    svg.append("g")
+        .call(d3.axisLeft(y));
+
+    // Bars
+    let barGroup = svg.append("g")
+        .attr('transform', 'translate(' + 0 + ',' + 0 + ')')
+
+    barGroup.selectAll(".myBar")
+        .data(regionData)
+        .enter()
+        .append("rect")
+        .attr('class', 'myBar')
+        .attr("x", function(d) { return x(d[0])})
+        .attr("y", function(d) { return y(d[1])})
+        .attr("width", x.bandwidth())
+        .attr("height", function(d) {return height - y(d[1]); })
+        .attr("fill", "#d45087")
+
+    // labels
+    svg.append("text")
+        .attr("text-anchor", "end")
+        .attr("x", (width/2)+30)
+        .attr("y", height + barMargin.top)
+        .text("Region");
+
+    svg.append("text")
+        .attr("text-anchor", "end")
+        .attr("transform", "rotate(-90)")
+        .attr("y", - barMargin.left + 20)
+        .attr("x", - (height/2)+70)
+        .text("Methane Emissions");
+
+    svg.append("text")
+        .attr("x", (width / 2))             
+        .attr("y", 0 - (barMargin.top/2))
+        .attr("text-anchor", "middle")  
+        .style("font-size", "16px")
+        .style("font-weight", "500")
+        .style("text-transform", "none") 
+        .text("By Region");
+
+})
